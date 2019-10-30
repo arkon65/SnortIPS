@@ -1,3 +1,7 @@
+#Welcome to my SnortIPS script. I am Argyris Koudounas, a bachelor student who worked on this script as a part of my thesis on SDN security.
+#In the following lines, you will have to change specific parts, mostly rule IDs and "if" statements, in order to make this script work for your case.
+#You should adjust the following variables: comm, tcpRules, nmapRules. Also, change all the "if" statements that are related to those.
+
 import pexpect
 import time
 
@@ -7,8 +11,7 @@ while True:
     selection = input("")
 
     if selection == '1':
-        iface = input("Enter interface to monitor: ")
-        #addr = input("Enter monitored target IP: ")
+        iface = input("Enter interface to monitor: ")        
         comm = "sudo snort -A console -i '{0}' -u snort -g snort -c /etc/snort/snort.conf".format(iface)
         i = 0
         pingFlag = 0
