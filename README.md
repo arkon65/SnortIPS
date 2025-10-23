@@ -110,4 +110,6 @@ Make sure `include $RULE_PATH/local.rules` is active in your `/etc/snort/snort.c
 - You must have Snort configured and running with rule SIDs that match those in the script.  
 - Modify the rule IDs and thresholds in the `tcpRules`, `nmapRules`, and ICMP detection sections to suit your Snort setup.  
 - Run in a controlled environment such as a lab or VM.
-- Missing features: proper input control & sanitization 
+- Missing features:
+ - proper input control & sanitization
+ - Proper iptables rules iplementation in case of conflicting rules 
