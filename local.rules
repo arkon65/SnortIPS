@@ -1,32 +1,32 @@
 
 #ICMP Alerts
-alert icmp any any -> 10.0.0.1 any (msg:"Suspicious ICMP detected towards server"; GID:1; sid:10000002; rev:001;)
-alert icmp any any -> 10.0.0.1 any (msg:"Possible ICMP Flooding imminent"; GID:1; sid:10000005; detection_filter: track by_dst, count 5, seconds 6;)
+alert icmp any any -> $HOME_NET any (msg:"Suspicious ICMP detected towards server"; GID:1; sid:10000002; rev:001;)
+alert icmp any any -> $HOME_NET any (msg:"Possible ICMP Flooding imminent"; GID:1; sid:10000005; detection_filter: track by_dst, count 5, seconds 6;)
 
 #TCP Alerts
-alert tcp any any -> 10.0.0.1 21 (msg:"FTP connection attempt"; sid: 10000021;)
+alert tcp any any -> $HOME_NET (msg:"FTP connection attempt"; sid: 10000021;)
 alert tcp any any -> any 25 ( content: "exe";   msg:"Suspicious E-Mail Packet!";  sid: 10000022;)
 alert tcp any any -> any any (dsize: > 2000; msg:"Suspicious oversized TCP packets iminent"; sid: 10000025;)
-alert tcp any any -> 10.0.0.1 80 (dsize: >500; msg: "Size TCP port 80 test"; sid: 10000926;)
-alert tcp any any -> 10.0.0.1 any (flags: SF; msg: "Possible SYN FIN scan on server!"; sid: 10000026;)
-alert tcp any any -> 10.0.0.1 any (flags: A; msg: "Possible ACK Flooding imminent"; sid: 10000029; detection_filter: track by_dst, count 3, seconds 6;)
-alert tcp any any -> 10.0.0.1 80 (flags: S; msg:"Possible TCP DoS"; flow: stateless; detection_filter: track by_dst, count 9, seconds 10; sid: 10000030)
+alert tcp any any -> $HOME_NET 80 (dsize: >500; msg: "Size TCP port 80 test"; sid: 10000926;)
+alert tcp any any -> $HOME_NET any (flags: SF; msg: "Possible SYN FIN scan on server!"; sid: 10000026;)
+alert tcp any any -> $HOME_NET any (flags: A; msg: "Possible ACK Flooding imminent"; sid: 10000029; detection_filter: track by_dst, count 3, seconds 6;)
+alert tcp any any -> $HOME_NET 80 (flags: S; msg:"Possible TCP DoS"; flow: stateless; detection_filter: track by_dst, count 9, seconds 10; sid: 10000030)
 
 #UDP Alerts
-alert udp any any -> 10.0.0.1 any (dsize: > 2000; msg:"Suspicious oversized UDP packets iminent"; sid: 10000325; detection_filter: track by_dst, count 5, seconds 7;)
-alert udp any any -> 10.0.0.1 any (dsize: > 2000; msg:"Suspicious UDP Scan"; sid: 10000326;)
+alert udp any any -> $HOME_NET any (dsize: > 2000; msg:"Suspicious oversized UDP packets iminent"; sid: 10000325; detection_filter: track by_dst, count 5, seconds 7;)
+alert udp any any -> $HOME_NET any (dsize: > 2000; msg:"Suspicious UDP Scan"; sid: 10000326;)
 
 #NMAP rules
-#alert tcp any any -> 10.0.0.1 22 (msg: "NMAP TCP Scan";sid:10000035; rev:2; )
-alert tcp any any -> 10.0.0.1 22 (msg:"Nmap FIN Scan"; flags:F; sid:1000038; rev:1;)
-alert tcp any any -> 10.0.0.1 22 (msg:"Nmap NULL Scan"; flags:0; sid:1000039; rev:1;)
-alert tcp any any -> 10.0.0.1 22 (msg:"Nmap XMAS Tree Scan"; flags:FPU; sid:1000036; rev:1; )
-alert tcp any any -> 10.0.0.1 3945 (msg:"Nmap XMAS Tree Scan"; flags:FPU; sid:1000136; rev:1; )
-alert tcp any any -> 10.0.0.1 6565 (msg:"Nmap XMAS Tree Scan"; flags:FPU; sid:1000137; rev:1; )
-alert tcp any any -> 10.0.0.1 24800 (msg:"Nmap XMAS Tree Scan"; flags:FPU; sid:1000138; rev:1; )
-alert tcp any any -> 10.0.0.1 7200 (msg:"Nmap XMAS Tree Scan"; flags:FPU; sid:1000139; rev:1; )
-alert tcp any any -> 10.0.0.1 119 (msg:"Nmap XMAS Tree Scan"; flags:FPU; sid:1000140; rev:1; )
-alert tcp any any -> 10.0.0.1 481 (msg:"Nmap XMAS Tree Scan"; flags:FPU; sid:1000141; rev:1; )
+#alert tcp any any -> $HOME_NET 22 (msg: "NMAP TCP Scan";sid:10000035; rev:2; )
+alert tcp any any -> $HOME_NET 22 (msg:"Nmap FIN Scan"; flags:F; sid:1000038; rev:1;)
+alert tcp any any -> $HOME_NET 22 (msg:"Nmap NULL Scan"; flags:0; sid:1000039; rev:1;)
+alert tcp any any -> $HOME_NET 22 (msg:"Nmap XMAS Tree Scan"; flags:FPU; sid:1000036; rev:1; )
+alert tcp any any -> $HOME_NET 3945 (msg:"Nmap XMAS Tree Scan"; flags:FPU; sid:1000136; rev:1; )
+alert tcp any any -> $HOME_NET 6565 (msg:"Nmap XMAS Tree Scan"; flags:FPU; sid:1000137; rev:1; )
+alert tcp any any -> $HOME_NET 24800 (msg:"Nmap XMAS Tree Scan"; flags:FPU; sid:1000138; rev:1; )
+alert tcp any any -> $HOME_NET 7200 (msg:"Nmap XMAS Tree Scan"; flags:FPU; sid:1000139; rev:1; )
+alert tcp any any -> $HOME_NET 119 (msg:"Nmap XMAS Tree Scan"; flags:FPU; sid:1000140; rev:1; )
+alert tcp any any -> $HOME_NET 481 (msg:"Nmap XMAS Tree Scan"; flags:FPU; sid:1000141; rev:1; )
 
 
 #FTP Alerts
